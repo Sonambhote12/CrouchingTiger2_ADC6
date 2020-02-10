@@ -1,0 +1,47 @@
+{% extends "customization/base.html" %}
+
+
+
+{% block content %} 
+<table class ="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Mobile</td>
+            <td>Email</td>
+            <td></td>
+            <td></td>
+            <td>
+                <a href="{% url 'customer_insert' %}" class="btn btn-outline-success">
+                     <i class="btn btn-warning"></i>Add New
+                </a>
+            </td>         
+        </tr>
+    </thead>
+    <tbody>
+     {% for customer in customer_list %}
+        <tr>
+            <td>{{customer.Firstname}}</td>
+            <td>{{customer.Lastname}}</td>
+            <td>{{customer.Mobile}}</td>
+            <td>{{customer.Email}}</td>
+            <td>
+                <a href="{% url 'customer_update' customer.id %}" class="btn text-secondary px-0">
+                    <button type="button" class="btn btn-primary">Edit</button>
+                </a>
+            </td>
+                <td><form action="{% url 'customer_delete' customer.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Remove</button></i>
+                    </button>
+                </td>
+                  
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+{% endblock content %}

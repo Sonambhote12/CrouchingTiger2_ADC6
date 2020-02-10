@@ -1,0 +1,38 @@
+{% extends "Carcustomizations/contact.html" %}
+{% for customer in customer_list %}
+  {{ customer.title }}
+{% endfor %}
+
+{% include 'snippets/pagination.html' %}
+
+{% block content %} 
+<form action="" method="post" autocomplete="off">
+   {% csrf_token %}
+
+    First name:<br>
+    {{form.Firstname}}
+    <br>
+    
+    Last name:<br>
+    {{form.Lastname}}
+    <br>
+    Phone number:
+    <div class="row">
+        <div class="col-md-4">
+            {{form.Mobile}}
+            <br>
+
+
+            
+        </div>
+        
+           <div class ="col-md-8">
+
+            Email:
+             {{form.Email}}
+           </div> 
+    </div>
+    <button type="submit" class="btn btn-warning"></i>Submit</button>
+</form>
+
+{% endblock content %}
